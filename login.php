@@ -1,0 +1,38 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "testdb");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $conn->real_escape_string($_POST["username"]);
+    $password = $_POST["password"];
+
+    $result = $conn->query("SELECT * FROM users WHERE username='$username'");
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        if ($user["password"] === $password) {
+            $_SESSION["username"] = $user["username"];
+            header("Location: profile.php");
+            exit();
+        } else {
+            $error = "Incorrect password.";
+        }
+    } else {
+        $error = "User not found.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head><title>Login</title></head>
+<body>
+<h2>Login</h2>
+<form method="POST">
+    Username: <input type="text" name="username" required><br><br>
+    Password: <input type="password" name="password" required><br><br>
+    <input type="submit" value="Login">
+</form>
+<?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+</body>
+</html>
