@@ -5,8 +5,8 @@ session_start();
 $host = "localhost";
 $db_username = "root";
 $db_password = "";
-$database = "lab_10";
-
+$database = "Lab_10";
+  
 $conn = mysqli_connect($host, $db_username, $db_password, $database);
 
 if (!$conn) {
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
     <title>Login</title>
 </head>
