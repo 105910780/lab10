@@ -13,7 +13,7 @@ if (!isset($_SESSION['username'])) {
 $host = "localhost";
 $db_username = "root";
 $db_password = "";
-$database = "user";
+$database = "Lab_10";
 
 $conn = mysqli_connect($host, $db_username, $db_password, $database);
 
