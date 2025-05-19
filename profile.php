@@ -1,7 +1,3 @@
-new profile.php  code: 
-
-
-
 <?php 
 session_start();
 
